@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<taglib>
+<tlib-version>1.0</tlib-version>
+<jsp-version>1.2</jsp-version>
+
+<tag>
+  <name>transproname</name>
+  <tag-class>pfc.tag.TransPronameTag</tag-class>
+  <body-content>empty</body-content>
+  <attribute>
+    <name>proname</name>
+    <required>true</required>
+    <rtexprvalue>true</rtexprvalue>
+  </attribute>
+</tag>
+<tag>
+  <name>select</name>
+  <tag-class>pfc.tag.SelectTag</tag-class>
+  <body-content>empty</body-content>
+  <attribute>
+    <name>name</name>
+    <required>true</required>
+    <rtexprvalue>true</rtexprvalue>
+  </attribute>
+  <attribute>
+  <name>value</name>
+    <required>false</required>
+    <rtexprvalue>true</rtexprvalue>
+  </attribute>
+</tag>
+<tag>
+  <name>selectview</name>
+  <tag-class>pfc.tag.SelectViewTag</tag-class>
+  <body-content>empty</body-content>
+  <attribute>
+    <name>name</name>
+    <required>true</required>
+    <rtexprvalue>true</rtexprvalue>
+  </attribute>
+  <attribute>
+  <name>value</name>
+    <required>false</required>
+    <rtexprvalue>true</rtexprvalue>
+  </attribute>
+</tag>
+</taglib>

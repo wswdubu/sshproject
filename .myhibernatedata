@@ -1,0 +1,20 @@
+#MyEclipse Hibernate Properties
+#Mon Jun 18 18:26:29 GMT+08:00 2018
+genBasicCompId=true
+sessionFactoryName=
+profile=
+daoSFId=
+jndiPath=
+detectM2M=true
+reStrategyClass=
+detectO2O=true
+springDaoFile=
+useJavaTypes=true
+keyGenerator=identity
+genVersionTag=true
+sessionFactoryId=
+basePersistenceClass=pfc.bean.base.Basebean
+genAnnotations=false
+reSettingsFile=
+configFile=/sshproject/src/main/java/hibernate.cfg.xml
+createConfigFile=true

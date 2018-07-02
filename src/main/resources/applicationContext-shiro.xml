@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    ">
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager" />
+		<!-- override these for application-specific URLs if you like: -->
+		<property name="loginUrl" value="/index.jsp" />
+		<property name="successUrl" value="/index.jsp" />
+		<property name="unauthorizedUrl" value="/pages/common/unauthorized.jsp" />
+		<property name="filterChainDefinitionMap" ref="chainDefinitionSectionMetaSource"></property>
+	</bean>
+
+	<!--Define any javax.servlet.Filter beans you want anywhere in this application 
+		context. -->
+	<!--They will automatically be acquired by the 'shiroFilter' bean above 
+		and made available -->
+	<!--to the 'filterChainDefinitions' property. Or you can manually/explicitly 
+		add them -->
+	<!--to the shiroFilter's 'filters' Map if desired. See its JavaDoc for more 
+		details. -->
+
+	<!-- <bean id="someFilter" class="..."/> <bean id="anotherFilter" class="..."> 
+		</bean> -->
+
+	<!-- 权限管理器 -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<!--Single realm app. If you have multiple realms, use the 'realms' property 
+			instead. -->
+		<property name="realm" ref="myRealm" />
+		<property name="cacheManager" ref="cacheManager" />
+		<!--By default the servlet container sessions will be used. Uncomment this 
+			line to use shiro's native sessions (see the JavaDoc for more): -->
+		<property name="sessionMode" value="native" />
+	</bean>
+	<!--权限数据源 -->
+	<bean id="myRealm" class="pfc.util.GradRealm">
+		<property name="userService" ref="UserService"></property>
+	</bean>
+
+	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<property name="cacheManager" ref="ehCacheManager" />
+	</bean>
+
+	<bean id="ehCacheManager"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean" />
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+	<bean id="chainDefinitionSectionMetaSource" class="pfc.util.ChainDefinitionSectionMetaSource">
+		<property name="priService" ref="PrivilegeService"></property>
+		<property name="filterChainDefinitions">
+			<value>
+				/frontpages/**=anon
+				/picture/**=anon
+				/login_login.htm=anon
+				/pages/image/** = anon
+				/pages/css/** = anon
+				/pages/index.jsp = anon
+				/pages/dwz.frag.xml = anon
+				/pages/js/** = anon
+				/pages/chart/** = anon
+				/pages/xheditor/** = anon
+				/pages/common/** = anon
+				/pages/bin/** = anon
+				/pages/themes/** = anon
+				/pages/uploadify/** = anon
+				/pages/** = authc
+			</value>
+		</property>
+	</bean>
+
+
+
+
+
+</beans>
+  

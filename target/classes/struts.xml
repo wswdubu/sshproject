@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<!-- 全局常量定义 -->
+	<!-- 设置Web应用的默认编码集为utf-8 -->
+	<constant name="struts.i18n.encoding" value="utf-8"/>
+	<!-- 设置Struts2应用是否处于开发模式,通常在开发调试阶段设为true,正式上线后设为false -->
+	<constant name="struts.devMode" value="true"></constant>
+	<!-- 设置Struts2的默认主题为simple -->
+	<constant name="struts.ui.theme" value="simple"></constant>
+	<!--当struts的配置文件修改后,系统是否自动重新加载该文件,默认值为false  -->
+	<constant name="struts.configuration.xml.reload" value="true"></constant>
+	<!-- 配置action的后缀为do,原本为action -->
+	<constant name="struts.action.extension" value="do"></constant>
+	<!-- 设置Struts2允许ognl中使用静态方法 -->
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true"></constant>
+	<package name="pfc" extends="struts-default" namespace="/">
+		<action name="*_*" class="{1}Action" method="{2}">
+			<result name="success">/pages/{1}/{1}{2}.jsp</result>
+			<result name="list" type="redirectAction">
+			    <param name="actionName">{1}_list</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="login">/index.jsp</result>
+			<result name="failure">/pages/common/unauthorized.jsp</result>
+			<result name="main" type="redirect">/pages/index.jsp</result>
+			<result name="Complete">complete.jsp</result>
+		</action>
+	</package>
+</struts>    
